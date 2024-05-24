@@ -1,5 +1,4 @@
 let products = [];
-// let cart = [];
 let productId = 1;
 
 function createProduct() {
@@ -77,16 +76,16 @@ function addToCart() {
 	productItems.forEach((item) => {
 		const checkbox = item.querySelector('input[type="checkbox"]');
 		if (checkbox.checked) {
+			checkbox.removeEventListener("change", updateTotalValue);
 			cartList.appendChild(item);
-			// cart.push(item);
 		}
 	});
-    
+    updateTotalValue();
 }
 
 function updateTotalValue() {
 	let totalValue = 0;
-	const productItems = document.querySelectorAll("#productList > div");
+	const productItems = document.querySelectorAll("#cartList > div");
 
 	productItems.forEach((item) => {
 		const checkbox = item.querySelector('input[type="checkbox"]');
@@ -109,5 +108,4 @@ function updateTotalValue() {
 
 	document.querySelector("#totalValue").textContent = formattedTotalValue;
 }
-
 
